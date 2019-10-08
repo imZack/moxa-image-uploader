@@ -14,6 +14,12 @@ const argv = require('yargs') // eslint-disable-line
     describe: 'TFTP Device IP (device IP address for TFTP)',
     demandOption: true,
   })
+  .option('tftp-device-lan-port', {
+    alias: 'tp',
+    describe: 'TFTP Device LAN Port',
+    default: 1,
+    demandOption: false,
+  })
   .option('upload-image-timeout', {
     alias: 't',
     describe: 'Upload image timeout in millsecond',
@@ -48,6 +54,7 @@ const argv = require('yargs') // eslint-disable-line
 debug(argv);
 process.env.SERVER_COUNT = 1;
 process.env.SERVER_1 = `${argv['terminal-server-host']},${argv['terminal-server-port']},1`;
+process.env.TFTP_PORT = `${argv['tftp-device-lan-port']}`;
 
 const captureDevice = require('../lib/captureDevice');
 const getModelUploader = require('../lib/getModelUploader');
