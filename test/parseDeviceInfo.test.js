@@ -56,4 +56,16 @@ describe('parseDeviceInfo', () => {
     expect(result).to.have.property('MAC1', '00:90:E8:00:F9:3C');
     expect(result).to.have.property('MAC2', '00:90:E8:00:F9:3D');
   });
+
+  it('should capture UC-3100 Boot Loader 1.4.2C00', () => {
+    parseDeviceInfo(result)(fs.readFileSync(`${__dirname}/fixtures/3100/1.4.2C00.telnet`));
+
+    expect(result).to.have.property('modelName', 'UC-3121-T-US-LX');
+    expect(result).to.have.property('bootloaderVersion', '1.4.2C00');
+    expect(result).to.have.property('cpuType', '1000MHz');
+    expect(result).to.have.property('bootloaderBuildDate', 'Sep 16 2019 - 22:07:28');
+    expect(result).to.have.property('serialNumber', '201804120010');
+    expect(result).to.have.property('MAC1', '00:90:E8:00:F4:EC');
+    expect(result).to.have.property('MAC2', '00:90:E8:00:F4:ED');
+  });
 });

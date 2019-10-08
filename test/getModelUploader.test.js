@@ -41,6 +41,12 @@ describe('getModelUploader', () => {
     expect(version).to.equal(uc3100v2);
   });
 
+  it('should return the uc3100-v2 if the bootloader is version 1.4.2C00', () => {
+    device.bootloaderVersion = '1.4.2C00';
+    const version = getModelUploader({ device });
+    expect(version).to.equal(uc3100v2);
+  });
+
   it('should return the uc8100', () => {
     device.modelName = 'UC-8100-ME';
     const version = getModelUploader({ device });
