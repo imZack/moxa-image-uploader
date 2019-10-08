@@ -16,7 +16,7 @@ describe('getModelUploader', () => {
 
   it('should throw an error if the using an custom bootloader', () => {
     device.bootloaderVersion = '1.3.0C06';
-    expect(() => getModelUploader({ device })).to.throw('Incompatible version checks 1.3.0C06 vs 1.3.0S07');
+    expect(() => getModelUploader({ device })).to.throw('Incompatible version checks 1.3.0C06 vs 1.4.0S01');
   });
 
   it('should throw an error if it cannot determine model number', () => {
@@ -30,7 +30,7 @@ describe('getModelUploader', () => {
   });
 
   it('should return the uc3100-v2 if bootloader is equal', () => {
-    device.bootloaderVersion = '1.3.0S07';
+    device.bootloaderVersion = '1.4.0S01';
     const version = getModelUploader({ device });
     expect(version).to.equal(uc3100v2);
   });
